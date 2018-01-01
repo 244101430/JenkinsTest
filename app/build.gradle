@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 
+ext.systemProperties= System.properties
+
 def getDate() {
     def date = new Date()
     def formattedDate = date.format('yyyyMMddHHmm')
@@ -45,18 +47,22 @@ android {
             def oldFile = output.outputFile
             def outDirectory = oldFile.parent
 
+
+
             if ("true".equals(IS_JENKINS)) {
                 timeNow = JENKINS_TIME
                 outDirectory = '/Users/wangmingli/Desktop/jenkins_apk'
-                newName = 'yj-android-v' +
-                        APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
+                newName = 'yj-android-v' +System.getProperty('ENVTYPE')+
+
+                APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
             } else {
                 timeNow = getDate()
                 if (variant.buildType.name.equals('debug')) {
                     newName = "yj-android-v${APP_VERSION}-debug.apk"
                 } else {
-                    newName = 'yj-android-v' +
-                            APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
+                    newName = 'yj-android-v' +System.getProperty('ENVTYPE')+
+
+                    APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
                 }
             }
 
