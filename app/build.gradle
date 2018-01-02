@@ -44,9 +44,10 @@ android {
 
             timeNow = getDate()
             if (variant.buildType.name.equals('release')) {
-                newName = 'Jenkins-v' + VERSION_NAME + '-' + timeNow + '-' + variant.buildType.name + '.apk'
+//                newName = 'Jenkins-v' + VERSION_NAME + '-' + timeNow + '-' + variant.buildType.name + '.apk'
+                newName = "Jenkins-V${VERSION_CODE}_${VERSION_NAME}-${variant.buildType.name}-${timeNow}.apk"
             } else {
-                newName = "Jenkins-v${VERSION_NAME}-debug.apk"
+                newName = "Jenkins-V${VERSION_CODE}_${VERSION_NAME}-debug.apk"
             }
             output.outputFile = new File(outDirectory, newName)
         }
