@@ -13,7 +13,7 @@ android {
     signingConfigs {
         signingConfig {
             keyAlias 'jenkins'
-            keyPassword 'wml888888'
+            keyPassword 'wml88888'
             storeFile file('jenkins.jks')
             storePassword 'wml888888'
         }
@@ -29,7 +29,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
