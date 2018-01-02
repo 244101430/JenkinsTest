@@ -43,10 +43,10 @@ android {
             def outDirectory = oldFile.parent
 
             timeNow = getDate()
-            if (variant.buildType.name.equals('debug')) {
-                newName = "Jenkins-v${VERSION_NAME}-debug.apk"
-            } else if (variant.buildType.name.equals('release')) {
+            if (variant.buildType.name.equals('release')) {
                 newName = 'Jenkins-v' + VERSION_NAME + '-' + timeNow + '-' + variant.buildType.name + '.apk'
+            } else {
+                newName = "Jenkins-v${VERSION_NAME}-debug.apk"
             }
             output.outputFile = new File(outDirectory, newName)
         }
