@@ -1,15 +1,10 @@
 apply plugin: 'com.android.application'
 
-
-ext.systemProperties= System.properties
-
 def getDate() {
     def date = new Date()
     def formattedDate = date.format('yyyyMMddHHmm')
     return formattedDate
 }
-def verCode = 19
-
 
 android {
     compileSdkVersion 25
@@ -28,8 +23,8 @@ android {
         applicationId "com.example.wangmingli.jenkinstest"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode verCode
-        versionName APP_VERSION
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -47,27 +42,13 @@ android {
             def oldFile = output.outputFile
             def outDirectory = oldFile.parent
 
-
-
-            if ("true".equals(IS_JENKINS)) {
-                timeNow = JENKINS_TIME
-                outDirectory = '/Users/wangmingli/Desktop/jenkins_apk'
-                newName = 'yj-android-v' +System.getProperty('ENVTYPE')+
-
-                APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
-            } else {
-                timeNow = getDate()
-                if (variant.buildType.name.equals('debug')) {
-                    newName = "yj-android-v${APP_VERSION}-debug.apk"
-                } else {
-                    newName = 'yj-android-v' +System.getProperty('ENVTYPE')+
-
-                    APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
-                }
+            timeNow = getDate()
+            if (variant.buildType.name.equals('debug')) {
+                newName = "Jenkins-v${VERSION_NAME}-debug.apk"
+            } else if (variant.buildType.name.equals('release')) {
+                newName = 'Jenkins-v' + VERSION_NAME + '-' + timeNow + '-' + variant.buildType.name + '.apk'
             }
-
             output.outputFile = new File(outDirectory, newName)
-
         }
     }
 }
