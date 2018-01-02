@@ -19,7 +19,7 @@ android {
         signingConfig {
             keyAlias 'jenkins'
             keyPassword 'wml888888'
-            storeFile file('/Users/wangmingli/Desktop/jenkins.jks')
+            storeFile file('jenkins.jks')
             storePassword 'wml888888'
         }
     }
